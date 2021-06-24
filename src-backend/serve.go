@@ -22,6 +22,6 @@ func root(ctx *gin.Context) {
 }
 
 func test(ctx *gin.Context) {
-	fmt.Println("hello3")
+	fmt.Println("hello-ryutaro")
 	ctx.Writer.WriteString("hello3")
 }
