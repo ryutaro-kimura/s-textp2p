@@ -22,6 +22,7 @@ func root(ctx *gin.Context) {
 }
 
 func test(ctx *gin.Context) {
-	fmt.Println("hello3")
-	ctx.Writer.WriteString("hello3")
+	fmt.Println("hello2")
+	ctx.Writer.WriteString("hello")
 }
+
