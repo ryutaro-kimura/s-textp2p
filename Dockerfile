@@ -1,10 +1,10 @@
 FROM node:16-alpine
 MAINTAINER ksuke nakamura
 
-WORKDIR /app
-
 ADD . /app
 
-RUN npm install -g npm@7.18.1
+WORKDIR /app
+
+RUN npm install -g npm
 
 CMD ["npm", "run", "serve"]

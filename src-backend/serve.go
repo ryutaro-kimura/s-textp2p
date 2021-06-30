@@ -25,3 +25,4 @@ func test(ctx *gin.Context) {
 	fmt.Println("hello-ryutaro")
 	ctx.Writer.WriteString("hello3")
 }
+
