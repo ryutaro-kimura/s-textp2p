@@ -3,7 +3,8 @@
 //ページのアドレスを作っている
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'//componentsに見た目部品のファイルを’作っていって、それをたくさん読むのがめんどくさいので、vuesにimportしてまとめて読みこむ
+import Home from '../views/Home.vue'
+import chat from '@/views/chat.vue'
 import Account from '@/views/account.vue'
 import Search from '@/components/search.vue'
 import Result from '@/components/result_page.vue'
@@ -17,6 +18,9 @@ const routes = [
     component: Home
   },
   {
+    path: '/chat',
+    component: chat
+  },
     path: '/about',
     name: 'About',
     // route level code-splitting
