@@ -39,10 +39,12 @@ export default {
   },
   created() {
     let params = new URLSearchParams();
-    params.append("uid", "vR1Ga2xE2MRsQbT1o8bM1HfyPXh1");
-    params.append("contentID", "0DiQ-Sf2cw3lr5M0I-yeRHGpom");
+    params.append("token", this.$store.getters.getToken);
+    params.append("contentID", this.$store.getters.getContentID);
+    console.log(this.$store.getters.getToken)
+    console.log(this.$store.getters.getContentID)
     axios
-      .post("https://textp2p.herokuapp.com/api/readChatDataDev", params)
+      .post("https://textp2p.herokuapp.com/api/readChatData", params)
       .then((res) => {
         console.log(res);
         let user = res.data.UID;
