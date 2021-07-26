@@ -32,7 +32,12 @@ export default {
     this.items.push({
       title: "ログイン",
       subtitle: "ユーザ認証を行います",
-      link: "/",
+      link: "/login",
+    },
+    {
+      title: "アカウント作成",
+      subtitle: "アカウントの作成を行います",
+      link: "SignUp"
     });
   },
   data() {
