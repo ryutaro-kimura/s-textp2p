@@ -1,8 +1,15 @@
+//ルーティングの管理プログラム
+//ブラウザでアクセスするとこの表示場所を指定
+//ページのアドレスを作っている
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/SignUp.vue'
 import Login from '../views/Login.vue'
+import chat from '@/views/chat.vue'
+import Account from '@/views/account.vue'
+import Search from '@/components/search.vue'
+import Result from '@/components/result_page.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +18,10 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/chat',
+    component: chat
   },
   {
     path: '/about',
@@ -29,7 +40,22 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
-  }
+  },
+  {
+    path : '/account',
+    name : 'account',
+    component : Account
+  },
+  {
+    path : '/search',
+    name : 'search',
+    component : Search
+  },
+  {
+    path : '/result',
+    name : 'result',
+    component : Result
+  },
 ]
 
 const router = new VueRouter({
