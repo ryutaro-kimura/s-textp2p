@@ -19,11 +19,6 @@ export default new Vuex.Store({
       state.contentID = contentID
     }
   },
-  contentID: {
-    setContentID(state, contentID) {
-      state.contentID = contentID
-    }
-  },
   actions: {
   },
   modules: {
