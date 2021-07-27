@@ -9,7 +9,7 @@
                 <input id="email" name="email" v-model="email" type="text" :placeholder=this.p_email>
                 </div>
                 <div class="password-field">
-                <input id="password" name="password" v-model="password" type="text" :placeholder=this.p_password>
+                <input id="password" name="password" v-model="password" type="password" :placeholder=this.p_password>
                 </div>
                 <div>
                     <v-btn @click="login" color="primary">

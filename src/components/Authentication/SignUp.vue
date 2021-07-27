@@ -15,7 +15,7 @@
                 <input id="phone_number" name="phone_number" v-model="phone_number" type="text" placeholder="Phone number">
                 </div>
                 <div class="form-fields">
-                <input id="password" name="password" v-model="password" type="text" placeholder="Password">
+                <input id="password" name="password" v-model="password" type="password" placeholder="Password">
                 </div>
                 <div>
                     <v-btn @click="sign_up" color="primary">
