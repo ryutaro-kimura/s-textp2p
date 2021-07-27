@@ -1,13 +1,13 @@
 <template>
     <div>
-    <account />
+        <account />
     </div>
 </template>
 <script>
 import account from '@/components/account.vue'
 export default {
     components:{
-        'account': account
+        'account':account
     }
-}    
+}
 </script>
