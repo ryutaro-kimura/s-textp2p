@@ -1,15 +1,15 @@
 <template>
-    <div class="main-container">
+    <div :style="styleVariable" class="main-container">
         <form>
             <div class="box-container">
                 <h2 class="heading">
                 Login Your Account
                 </h2>
-                <div class="form-fields">
-                <input id="email" name="email" v-model="email" type="text" placeholder="Email Address">
+                <div class="email-field">
+                <input id="email" name="email" v-model="email" type="text" :placeholder=this.p_email>
                 </div>
-                <div class="form-fields">
-                <input id="password" name="password" v-model="password" type="text" placeholder="Password">
+                <div class="password-field">
+                <input id="password" name="password" v-model="password" type="password" :placeholder=this.p_password>
                 </div>
                 <div>
                     <v-btn @click="login" color="primary">
@@ -31,7 +31,19 @@ export default{
         return {
             email: '',
             password: '',
+            p_email: 'Email Address',
+            p_password: 'Password',
+            p_email_color: '#666666',
+            p_password_color: '#666666'
         };
+    },
+    computed: {
+        styleVariable() {
+            return {
+                '--p_email_color': this.p_email_color,
+                '--p_password_color': this.p_password_color 
+            }
+        }
     },
     methods: {
         login: function(){
@@ -39,13 +51,41 @@ export default{
             let auth = new Authentication();
             auth.setSigninInfo(this.email, this.password);
             auth.sendSignin().then(res => {
-                console.log(res)
-                let login = {
-                    login: true,
-                    token: res
+                if (res == "auth/invalid-email") {
+                    console.log(res)
+                    this.password = ''
+                    this.p_email = 'user not found'
+                    this.p_password = 'Password'
+                    this.p_email_color = '#FF0000'
+                    this.p_password_color = '#666666'                    
                 }
-                this.$store.commit("setLogin", login)
-                console.log(this.$store.getters.getLogin)
+                else if (res == "auth/user-not-found") {
+                    console.log(res)
+                    this.email = ''
+                    this.password = ''
+                    this.p_email = 'user not found'
+                    this.p_password = 'Password'
+                    this.p_email_color = '#FF0000'
+                    this.p_password_color = '#666666'
+                }
+                else if (res == "auth/wrong-password") {
+                    console.log(res)
+                    this.password = ''
+                    this.p_email = 'Email Address'
+                    this.p_password = 'wrong password'
+                    this.p_email_color = '#666666'
+                    this.p_password_color = '#FF0000'
+                }
+                else {
+                    let login = {
+                        login: true,
+                        token: res
+                    }
+                    this.$store.commit("setLogin", login)
+                    console.log(this.$store.getters.getLogin)
+                    this.$router.push('/search')
+                    this.$router.go({path: this.$router.currentRoute.path, force: true})
+                }
             });
         }
     }
@@ -76,13 +116,13 @@ export default{
     text-transform: none;
     letter-spacing: 0;
 }
-.form-fields, .form-fields button {
+.email-field, .password-field, .form-fields button {
     width: 100%;
     margin: 5px 0;
     line-height: 28px;
     border-radius: 5px;
 }
-.form-fields input {
+.email-field, .password-field input {
     width: 100%;
     line-height: 40px;
     border-radius: 5px;
@@ -92,18 +132,11 @@ export default{
     padding: 0 5px;
     font-size: 14px;
 }
-.createaccount {
-    padding: 15px;
-    background-color: #0069ff;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400;
-    height: 48px;
-    line-height: 48px;
-    padding: 0 32px;
-    text-align: center;
-    border-radius: 5px;
+.email-field ::placeholder {
+    color: var(--p_email_color);
+}
+.password-field ::placeholder {
+    color: var(--p_password_color);
 }
 .footer, .footer a {
     text-align: center;

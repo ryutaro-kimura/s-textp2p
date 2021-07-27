@@ -12,10 +12,10 @@
                 <input id="email" name="email" v-model="email" type="text" placeholder="Email Address">
                 </div>
                 <div class="form-fields">
-                <input id="phone_number" name="phone_number" v-model="phone_number" type="text" placeholder="Phone number">
+                <input id="phone_number" name="phone_number" v-model="phone_number" type="text" placeholder="Phone number(000-0000-0000)">
                 </div>
                 <div class="form-fields">
-                <input id="password" name="password" v-model="password" type="text" placeholder="Password">
+                <input id="password" name="password" v-model="password" type="password" placeholder="Password(8桁以上)">
                 </div>
                 <div>
                     <v-btn @click="sign_up" color="primary">
