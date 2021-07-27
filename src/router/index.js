@@ -4,7 +4,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import account from '@/views/Account.vue'
+import account from '@/views/account.vue'
 import Profile from '@/views/Profile.vue'
 
 import SignUp from '../views/SignUp.vue'

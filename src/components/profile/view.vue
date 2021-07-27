@@ -49,8 +49,8 @@ import axios from 'axios'
   export default {
       created(){
           let params =new URLSearchParams()
-          params.append("uid",'vR1Ga2xE2MRsQbT1o8bM1HfyPXh1')
-          axios.post('https://textp2p.herokuapp.com/api/readProfileDev', params).then(res => {
+          params.append("token",this.$store.getters.getToken)
+          axios.post('https://textp2p.herokuapp.com/api/readProfile', params).then(res => {
               console.log(res.data.icon)
               console.log(res.data.name)
               console.log(res.data.bio)
