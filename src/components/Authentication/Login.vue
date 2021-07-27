@@ -84,6 +84,7 @@ export default{
                     this.$store.commit("setLogin", login)
                     console.log(this.$store.getters.getLogin)
                     this.$router.push('/search')
+                    this.$router.go({path: this.$router.currentRoute.path, force: true})
                 }
             });
         }
