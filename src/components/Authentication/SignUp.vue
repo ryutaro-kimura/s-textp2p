@@ -25,7 +25,7 @@
             </div>
         </form>
         <div class="footer">
-            <p>Already have an account? <a href="/login"> Sign In</a></p>
+            <p>Already have an account? <a href="/login"> Login</a></p>
         </div>
     </div>
 </template>
@@ -51,6 +51,9 @@ export default{
             params.append("phoneNumber", this.phone_number);
             axios.post("https://textp2p.herokuapp.com/api/signup", params).then (res =>{
                 console.log(res);
+                if (res.data['error'] == null) {
+                    this.$router.push('/login');
+                }
             })
         }
     }
