@@ -12,7 +12,7 @@
                             color="grey"
                             size="164"
                             @click="editIcon">
-                            <v-img :src="user.icon"></v-img>
+                            <v-img :src="tmp"></v-img>
                             </v-avatar>
                         </v-col>
                         
@@ -76,8 +76,16 @@ import axios from 'axios'
         }
     },
     methods: {
-        test(){
-            this.$emit("FlipEdit")
+        register(){
+            let params=new FormData()
+            params.append("name",this.user.name)
+            params.append("bio",this.user.bio)
+            params.append("icon",this.user.icon)
+            params.append("token",this.$store.getters.getToken)
+            axios.post("https://textp2p.herokuapp.com/api/updataProfile",params).then(res=>{
+                console.log(res)
+            })
+
         },
         editIcon() {
             let elm = document.createElement("input")
