@@ -44,13 +44,18 @@ export default {
     console.log(this.$store.getters.getToken)
     console.log(this.$store.getters.getContentID)
     axios
-      .post("https://textp2p.herokuapp.com/api/readChatData", params)
+      .post("https://textp2p.herokuapp.com/api/storeContentID", params)
       .then((res) => {
         console.log(res);
-        let user = res.data.UID;
-        this.chatContents = res.data.Content;
-        for (let i = 0; i < res.data.Content.length; i++) {
-          this.chatContents[i].IsMe = user === this.chatContents[i].UID;
+        this.content = res.data.ContentID
+        this.user = res.data.UID;
+        if (res.data.Content !== null){
+          this.chatContents = res.data.Content;
+        }
+        for (let i = 0; i < this.chatContents.length; i++) {
+          this.chatContents[i].IsMe = this.user === this.chatContents[i].UID;
+          console.log(this.user)
+          console.log(this.chatContents[i].UID)
         }
         console.log(this.chatContents);
       });
@@ -60,7 +65,7 @@ export default {
     return {
       chatContents: [],
       ws: {},
-      user: 'vR1Ga2xE2MRsQbT1o8bM1HfyPXh1',
+      user: '',
       password: "Password",
       show: false,
       message: "",
@@ -76,7 +81,7 @@ export default {
         "mdi-emoticon-sad",
         "mdi-emoticon-tongue",
       ],
-      content: '0DiQ-Sf2cw3lr5M0I-yeRHGpom'
+      content: ''
     };
   },
 
@@ -88,7 +93,9 @@ export default {
 
   methods: {
     websocketHandler() {
-      let uri = "wss:///textp2p.herokuapp.com/chat/" + this.content;
+      console.log(this.content)
+      let uri = "wss:///textp2p.herokuapp.com/chat/" + this.$store.getters.getContentID;
+      console.log(uri)
       let ws = new WebSocket(uri);
       this.ws = ws;
       this.ws.onmessage = (msg) => {
@@ -135,6 +142,9 @@ export default {
         ? (this.iconIndex = 0)
         : this.iconIndex++;
     },
+    closeDialog() {
+      this.$emit('closeDialog')
+    }
   },
 };
 </script>

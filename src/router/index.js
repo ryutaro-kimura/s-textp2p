@@ -13,6 +13,8 @@ import chat from '@/views/chat.vue'
 import Account from '@/views/account.vue'
 import Search from '@/components/search.vue'
 import Result from '@/components/result_page.vue'
+import Upload from '@/views/Upload.vue'
+import UploadList from '@/views/UploadList.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +27,16 @@ const routes = [
   {
     path: '/chat',
     component: chat
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: Upload
+  },
+  {
+    path: '/upload-list',
+    name: 'UploadList',
+    component: UploadList
   },
   {
     path: '/about',

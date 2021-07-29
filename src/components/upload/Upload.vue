@@ -7,12 +7,10 @@
         >
           <v-text-field
             v-model="name"
-            :rules="rules"
             counter="30"
             hint="商品名を入力してください"
             label="商品名"
           ></v-text-field>
-          <p>Message : {{ name }}</p>
         </v-col>
     <!-- ファイルアップロード -->
     <v-file-input
@@ -36,7 +34,7 @@
         :disabled="loading3"
         color="blue-grey"
         class="ma-2 white--text"
-        @click="loader = 'loading3'"
+        @click="send"
       >
         Upload
         <v-icon
@@ -51,11 +49,14 @@
 </template>
 
 <script>
-  // import axios from "axios"
+  import axios from "axios"
   export default {
     data () {
       return {
         loader: null,
+        name: '',
+        detail: '',
+        file: {},
         loading: false,
         loading2: false,
         loading3: false,
@@ -74,14 +75,15 @@
       },
     },
     methods: {
-      // send () {
-      //   let params = new FromData()
-      //   params.append("name", {{ name }})
-      //   params.append("file", {{ file }})
-      //   params.append("detail", {{ detail }})
-      //   params.append("token", this.$store.getters.getToken)
-      //   axios.post("https://textp2p.herokuapp.com/api/upload", params)
-      // },
+      send () {
+        this.loader = 'loading3'
+        let params = new FormData()
+        params.append("name", this.name)
+        params.append("file", this.file)
+        params.append("detail", this.detail)
+        params.append("token", this.$store.getters.getToken)
+        axios.post("https://textp2p.herokuapp.com/api/upload", params)
+      },
     },
   }
 </script>
